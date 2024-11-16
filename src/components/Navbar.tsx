@@ -5,9 +5,10 @@ import { useEffect, useState } from "react";
 import Sidebar from "./sidebar";
 import { AnimatePresence } from "framer-motion";
 import { Menu } from "lucide-react";
+import Link from "next/link";
 
 
-const navItems = ['About', 'Experience', 'Skills', 'Projects', 'Contact'];
+const navItems = ['About', 'Services', 'Experience', 'Skills', 'Projects', 'Contact'];
  const  Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false)
 
@@ -42,22 +43,32 @@ const navItems = ['About', 'Experience', 'Skills', 'Projects', 'Contact'];
             animate={{ x: 0, opacity: 1 }}
             className="text-2xl font-bold gradient-text"
           >
-            <img
+           <Link href="/">
+           <img
               src="/assets/portfolio-logo.png"
               alt="portfolio"
               className="h-[40px] w-[40px] object-contain"
             />
+           </Link>
           </motion.div>
           <div className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
+               item === 'Services' ? (
+                <Link key={item} href="/services" className="text-slate-600 hover:text-sectionHadingColor-800 transition-all duration-300 relative group">
+                {item}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full" />
+              </Link>
+               ):
+               (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="text-slate-600 hover:text-sectionHadingColor-800 transition-all duration-300 relative group"
-                >
-                  {item}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full" />
-                </a>
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-slate-600 hover:text-sectionHadingColor-800 transition-all duration-300 relative group"
+              >
+                {item}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full" />
+              </a>
+               )
               ))}
             
              {/* <a
