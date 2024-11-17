@@ -92,7 +92,7 @@ export default function Services() {
           className="max-w-6xl mx-auto"
         >
           {/* Header Section */}
-          <div className="text-center mb-16 mt-16">
+          <div className="text-center mb-16 mt-8 md:mt-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
