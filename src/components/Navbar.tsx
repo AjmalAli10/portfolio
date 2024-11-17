@@ -8,7 +8,7 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 
 
-const navItems = ['About', 'Services', 'Experience', 'Skills', 'Projects', 'Contact'];
+const navItems = ['About', 'Experience', 'Skills', 'Projects', 'Contact'];
  const  Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false)
 
@@ -53,22 +53,14 @@ const navItems = ['About', 'Services', 'Experience', 'Skills', 'Projects', 'Cont
           </motion.div>
           <div className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
-               item === 'Services' ? (
-                <Link key={item} href="/services" className="text-slate-600 hover:text-sectionHadingColor-800 transition-all duration-300 relative group">
-                {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full" />
-              </Link>
-               ):
-               (
-                <a
+                <Link
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 className="text-slate-600 hover:text-sectionHadingColor-800 transition-all duration-300 relative group"
               >
                 {item}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full" />
-              </a>
-               )
+              </Link>
               ))}
             
              {/* <a

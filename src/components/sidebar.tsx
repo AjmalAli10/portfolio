@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { X } from 'lucide-react';
+import {  X } from 'lucide-react';
 
 interface SidebarProps {
   onClose: () => void;
@@ -39,7 +39,16 @@ export default function Sidebar({ onClose, navItems }: SidebarProps) {
 
           <div className="space-y-6">
             {navItems.map((item) => (
-              <motion.a
+               item === 'Services' ? (
+                <motion.a key={item} href="/services" className="block text-lg font-medium text-slate-600 hover:text-primary-600 transition-colors"
+                whileHover={{ x: 4 }}
+                transition={{ type: 'spring', stiffness: 300 }}>
+                {item}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full" />
+              </motion.a>
+
+              ):
+              (<motion.a
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 onClick={onClose}
@@ -48,7 +57,7 @@ export default function Sidebar({ onClose, navItems }: SidebarProps) {
                 transition={{ type: 'spring', stiffness: 300 }}
               >
                 {item}
-              </motion.a>
+              </motion.a>)
             ))}
             
             {/* <motion.a

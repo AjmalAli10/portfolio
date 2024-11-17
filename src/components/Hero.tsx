@@ -1,6 +1,7 @@
 import * as motion from "framer-motion/client"
 import { ArrowRight, Github, Linkedin,  X  } from 'lucide-react';
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -43,19 +44,19 @@ export default function Hero() {
               transition={{ delay: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 mb-8"
             >
-              <a
+              <Link
                 href="#contact"
                 className="group px-8 py-4 bg-primary-600 text-white rounded-xl flex items-center justify-center gap-2 hover:bg-primary-700 transition-all duration-300 shadow-sm hover:shadow"
               >
                 Let&apos;s Talk
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href="#experience"
+              </Link>
+              <Link
+                href="/services"
                 className="px-8 py-4 bg-white text-slate-800 rounded-xl hover:bg-slate-50 transition-all duration-300 border border-slate-200 shadow-sm hover:shadow flex items-center justify-center"
               >
-                View Experience
-              </a>
+                View Services
+              </Link>
             </motion.div>
 
             <motion.div

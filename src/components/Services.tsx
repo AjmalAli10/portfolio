@@ -23,13 +23,13 @@ const services = [
     lightColor: 'from-purple-50 to-pink-50',
   },
   {
-    icon: Smartphone,
-    title: 'Mobile-First Development',
-    description: 'Seamless experiences across all devices and screen sizes.',
-    features: ['Responsive Layouts', 'Touch-Friendly Design', 'Cross-Platform Support'],
-    commitment: 'Consistent experience across all devices',
-    color: 'from-orange-500 to-red-500',
-    lightColor: 'from-orange-50 to-red-50',
+    icon: Zap,
+    title: 'Performance Optimization',
+    description: 'Fast-loading, optimized applications for the best user experience.',
+    features: ['Speed Optimization', 'SEO Best Practices', 'Core Web Vitals'],
+    commitment: 'Lightning-fast load times, SEO-friendly',
+    color: 'from-yellow-500 to-orange-500',
+    lightColor: 'from-yellow-50 to-orange-50',
   },
   {
     icon: Globe2,
@@ -41,15 +41,6 @@ const services = [
     lightColor: 'from-green-50 to-teal-50',
   },
   {
-    icon: Zap,
-    title: 'Performance Optimization',
-    description: 'Fast-loading, optimized applications for the best user experience.',
-    features: ['Speed Optimization', 'SEO Best Practices', 'Core Web Vitals'],
-    commitment: 'Lightning-fast load times, SEO-friendly',
-    color: 'from-yellow-500 to-orange-500',
-    lightColor: 'from-yellow-50 to-orange-50',
-  },
-  {
     icon: Gem,
     title: 'Quality Assurance',
     description: 'Thoroughly tested solutions that meet high quality standards.',
@@ -57,6 +48,15 @@ const services = [
     commitment: 'Reliable, maintainable solutions',
     color: 'from-indigo-500 to-purple-500',
     lightColor: 'from-indigo-50 to-purple-50',
+  },
+  {
+    icon: Smartphone,
+    title: 'Mobile-First Development',
+    description: 'Seamless experiences across all devices and screen sizes.',
+    features: ['Responsive Layouts', 'Touch-Friendly Design', 'Cross-Platform Support'],
+    commitment: 'Consistent experience across all devices',
+    color: 'from-orange-500 to-red-500',
+    lightColor: 'from-orange-50 to-red-50',
   },
 ];
 
@@ -102,7 +102,7 @@ export default function Services() {
               {/* <span className="px-4 py-1.5 bg-primary-100 text-primary-700 rounded-full text-sm font-medium inline-block mb-4">
                 Available for New Projects
               </span> */}
-              <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary-600 via-primary-800 to-primary-600 text-transparent bg-clip-text">
+              <h2 className="text-3xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary-600 via-primary-800 to-primary-600 text-transparent bg-clip-text">
               Transforming Ideas into Digital Realities
               </h2>
               <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
@@ -116,7 +116,7 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16"
+              className="flex flex-col md:flex-row justify-center items-center gap-8 max-w-4xl mx-auto mb-16"
             >
               {highlights.map((highlight) => {
                 const Icon = highlight.icon;
@@ -133,8 +133,8 @@ export default function Services() {
                           <Icon className="w-8 h-8 text-primary-600" />
                         </div>
                       </div>
-                      <h3 className="text-2xl font-bold text-primary-600 mb-1">{highlight.title}</h3>
-                      <p className="text-slate-600">{highlight.description}</p>
+                      <h3 className="text-xl font-bold text-primary-600 mb-1  line-clamp-2 md:w-[13rem]">{highlight.title}</h3>
+                      <p className="text-base text-slate-600">{highlight.description}</p>
                     </div>
                   </div>
                 );

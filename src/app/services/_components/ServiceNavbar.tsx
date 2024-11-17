@@ -1,6 +1,8 @@
 import Link from "next/link";
 
 /* eslint-disable @next/next/no-img-element */
+
+const navItems = ['Home', 'Contact'];
 const ServiceNavbar = () => {
     return (
         <>
@@ -18,10 +20,18 @@ const ServiceNavbar = () => {
                 />
                </Link>
               </div>
-              <div className="flex items-center gap-8 text-slate-600 hover:text-sectionHadingColor-800 transition-all duration-300 relative group">
-                MY SERVICES
+             <div className="flex items-center gap-8">
+             {navItems.map((item) => (
+                <Link
+                key={item}
+                href={item === 'Home' ? '/' : `#${item.toLowerCase()}`}
+                className="text-slate-600 hover:text-sectionHadingColor-800 transition-all duration-300 relative group"
+              >
+                {item}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full" />
-              </div>
+              </Link>
+              ))}
+             </div>
             </div>
           </div>
         </nav>
