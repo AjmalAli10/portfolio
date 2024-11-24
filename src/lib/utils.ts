@@ -47,7 +47,6 @@ export function constructMetadata({
     },
     icons: {
       icon: icons,
-      apple: "/apple-touch-icon.png",
     },
     metadataBase: new URL("https://www.ajmalali.me/"),
     alternates: {
