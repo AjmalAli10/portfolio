@@ -24,10 +24,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     createSitemapEntry("https://ajmalali.me", "yearly", 1),
     createSitemapEntry("https://ajmalali.me/services", "monthly", 0.8),
-    createSitemapEntry("https://ajmalali.me/#/about", "monthly", 0.5),
-    createSitemapEntry("https://ajmalali.me/#/projects", "monthly", 0.5),
-    createSitemapEntry("https://ajmalali.me/#/experience", "monthly", 0.5),
-    createSitemapEntry("https://ajmalali.me/#/skills", "monthly", 0.5),
-    createSitemapEntry("https://ajmalali.me/#/contact", "monthly", 0.5),
+    createSitemapEntry("https://ajmalali.me/#about", "monthly", 0.5),
+    createSitemapEntry("https://ajmalali.me/#projects", "monthly", 0.5),
+    createSitemapEntry("https://ajmalali.me/#experience", "monthly", 0.5),
+    createSitemapEntry("https://ajmalali.me/#skills", "monthly", 0.5),
+    createSitemapEntry("https://ajmalali.me/#contact", "monthly", 0.5),
   ];
 }

@@ -6,6 +6,7 @@ import {z} from 'zod'
 import emailjs from '@emailjs/browser';
 import toast from 'react-hot-toast';
 import { useState } from "react";
+import Image from "next/image";
 
 const userSchema = z.object({
   name: z.string().min(1, { message: "Name is required." }),
@@ -17,7 +18,6 @@ export default function ServiceContact() {
   async function formAction(formData: FormData) {
     const formValues = Object.fromEntries(formData);
     const result = userSchema.safeParse(formValues);
-    
   
       if (!result.success) {
         toast.error('Please fill in all fields correctly.', {
@@ -112,10 +112,14 @@ export default function ServiceContact() {
                   rel="noopener noreferrer"
                   className="w-12 h-12 flex items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:text-white hover:bg-green-500 transition-colors border border-slate-200"
                 >
-                  <img
+                  <Image
                     src="assets/whatsapp-brands-solid.svg"
                     alt="WhatsApp"
                     className="w-5 h-5"
+                    width={5}
+                    height={5}
+                    priority={false}
+                    unoptimized={true}
                   />
                 </a>
                 <a

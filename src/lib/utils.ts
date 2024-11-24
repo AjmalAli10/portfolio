@@ -11,6 +11,19 @@ export function constructMetadata({
   image?: string;
   icons?: string;
 } = {}): Metadata {
+  const fullImageUrl = new URL(image, "https://www.ajmalali.me").toString();
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Ajmal Ali",
+    jobTitle: "Frontend Engineer | Developer | Software Engineer",
+    url: "https://www.ajmalali.me/",
+    image: fullImageUrl,
+    sameAs: [
+      "https://twitter.com/softEng_ajmal",
+      "https://www.linkedin.com/in/ajmal-ali10",
+    ],
+  };
   return {
     title,
     description,
@@ -19,20 +32,28 @@ export function constructMetadata({
       description,
       images: [
         {
-          url: image,
+          url: fullImageUrl,
         },
       ],
-      url: "https://www.ajmalali.me/",
+      url: "https://www.ajmalali.me",
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [image],
+      images: [fullImageUrl],
       creator: "@softEng_ajmal",
     },
-    icons,
+    icons: {
+      icon: icons,
+      apple: "/apple-touch-icon.png",
+    },
     metadataBase: new URL("https://www.ajmalali.me/"),
+    alternates: {
+      types: {
+        "application/ld+json": JSON.stringify(jsonLd),
+      },
+    },
   };
 }

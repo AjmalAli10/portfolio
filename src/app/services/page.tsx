@@ -1,8 +1,13 @@
 import Services from "@/components/Services"
+import { Toaster } from "react-hot-toast"
 
 const Page = () => {
     return (
-        <Services />
+       
+        <>
+         <Toaster position="bottom-right" />
+         <Services />
+        </>
     )
 }
 
