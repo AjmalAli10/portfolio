@@ -37,6 +37,8 @@ export function constructMetadata({
       ],
       url: "https://www.ajmalali.me",
       type: "website",
+      siteName:
+        "Ajmal Ali | Frontend Engineer | Software Engineer | Developer | Portfolio",
     },
     twitter: {
       card: "summary_large_image",
