@@ -1,5 +1,5 @@
-import * as motion from "framer-motion/client"
-import { ArrowRight, Github, Linkedin,  X  } from 'lucide-react';
+import * as motion from "framer-motion/client";
+import { ArrowRight, Github, Linkedin, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -31,10 +31,14 @@ export default function Hero() {
               </div>
               <h1 className="text-5xl md:text-7xl font-bold mb-6">
                 <span className="gradient-text">Ajmal Ali</span>
-                <span className="block text-slate-800 mt-2">Frontend Engineer</span>
+                <span className="block text-slate-800 mt-2">
+                  Frontend Engineer
+                </span>
               </h1>
               <p className="text-base md:text-lg text-slate-600 mb-8 leading-relaxed">
-                Crafting beautiful digital experiences with modern web technologies. Focused on building scalable and user-friendly applications.
+                Crafting beautiful digital experiences with modern web
+                technologies. Focused on building scalable and user-friendly
+                applications.
               </p>
             </motion.div>
 
@@ -51,11 +55,17 @@ export default function Hero() {
                 Let&apos;s Talk
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link
+              {/* <Link
                 href="/services"
                 className="px-8 py-4 bg-white text-slate-800 rounded-xl hover:bg-slate-50 transition-all duration-300 border border-slate-200 shadow-sm hover:shadow flex items-center justify-center"
               >
                 View Services
+              </Link> */}
+              <Link
+                href="#experience"
+                className="px-8 py-4 bg-white text-slate-800 rounded-xl hover:bg-slate-50 transition-all duration-300 border border-slate-200 shadow-sm hover:shadow flex items-center justify-center"
+              >
+                View Expreince
               </Link>
             </motion.div>
 
@@ -66,9 +76,21 @@ export default function Hero() {
               className="flex gap-4"
             >
               {[
-                { icon: Github, href: 'https://github.com/AjmalAli10', label: 'GitHub' },
-                { icon: Linkedin, href: 'https://www.linkedin.com/in/ajmal-ali10', label: 'LinkedIn' },
-                { icon: X, href: 'https://x.com/softEng_ajmal', label: 'Twitter' },
+                {
+                  icon: Github,
+                  href: "https://github.com/AjmalAli10",
+                  label: "GitHub",
+                },
+                {
+                  icon: Linkedin,
+                  href: "https://www.linkedin.com/in/ajmal-ali10",
+                  label: "LinkedIn",
+                },
+                {
+                  icon: X,
+                  href: "https://x.com/softEng_ajmal",
+                  label: "Twitter",
+                },
               ].map(({ icon: Icon, href, label }, index) => (
                 <a
                   key={label}
@@ -77,7 +99,9 @@ export default function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`w-12 h-12 flex items-center justify-center rounded-xl bg-white text-slate-600 transition-colors border border-slate-200 group ${
-                    index === 0 || index === 2 ? 'hover:text-black hover:bg-primary-50' : 'hover:text-primary-600 hover:bg-primary-50'
+                    index === 0 || index === 2
+                      ? "hover:text-black hover:bg-primary-50"
+                      : "hover:text-primary-600 hover:bg-primary-50"
                   }`}
                 >
                   <Icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
@@ -108,12 +132,12 @@ export default function Hero() {
               <div className="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl">
                 <Image
                   src="/assets/profile-hero-image.webp"
-                     alt="Ajmal Ali"
-                     className="w-full h-full object-cover"
-                     fill
-                     priority={true}
-                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                 />
+                  alt="Ajmal Ali"
+                  className="w-full h-full object-cover"
+                  fill
+                  priority={true}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
               </div>
               <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-slate-200" />
             </div>
@@ -126,7 +150,9 @@ export default function Hero() {
             >
               <div className="flex items-center gap-4">
                 <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-                <p className="text-slate-600 font-medium">Building the next big thing in tech!</p>
+                <p className="text-slate-600 font-medium">
+                  Building products in tech!
+                </p>
               </div>
             </motion.div>
           </motion.div>
