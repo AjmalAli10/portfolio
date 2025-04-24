@@ -1,162 +1,133 @@
-import * as motion from "framer-motion/client";
-import { ArrowRight, Github, Linkedin, X } from "lucide-react";
-import Image from "next/image";
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
 export default function Hero() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    // Add event listener
+    window.addEventListener("scroll", handleScroll);
+    // Call handler right away to update initial position
+    handleScroll();
+
+    // Remove event listener on cleanup
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <section className="min-h-screen pt-[6rem] flex items-center bg-gradient-to-br from-slate-50 to-primary-50/30">
-      <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+    <section className="pt-20 sm:pt-28 md:pt-36 pb-24 sm:pb-32 md:pb-40 bg-white relative overflow-hidden">
+      <div className="container mx-auto px-5 sm:px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-5xl"
+        >
+          <motion.h1
+            className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter uppercase mb-4 sm:mb-6 leading-[1.1]"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
           >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="mb-8"
-            >
-              <div className="flex items-center gap-2 mb-6">
-                <motion.span
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className="px-4 py-1.5 bg-primary-100 text-primary-700 rounded-full text-sm font-medium"
-                >
-                  Available for work
-                </motion.span>
-              </div>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6">
-                <span className="gradient-text">Ajmal Ali</span>
-                <span className="block text-slate-800 mt-2">
-                  Frontend Engineer
-                </span>
-              </h1>
-              <p className="text-base md:text-lg text-slate-600 mb-8 leading-relaxed">
-                Crafting beautiful digital experiences with modern web
-                technologies. Focused on building scalable and user-friendly
-                applications.
-              </p>
-            </motion.div>
+            <span className="text-orange-600">Ajmal</span> Ali
+          </motion.h1>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 mb-8"
-            >
-              <Link
-                href="#contact"
-                className="group px-8 py-4 bg-primary-600 text-white rounded-xl flex items-center justify-center gap-2 hover:bg-primary-700 transition-all duration-300 shadow-sm hover:shadow"
-              >
-                Let&apos;s Talk
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              {/* <Link
-                href="/services"
-                className="px-8 py-4 bg-white text-slate-800 rounded-xl hover:bg-slate-50 transition-all duration-300 border border-slate-200 shadow-sm hover:shadow flex items-center justify-center"
-              >
-                View Services
-              </Link> */}
-              <Link
-                href="#experience"
-                className="px-8 py-4 bg-white text-slate-800 rounded-xl hover:bg-slate-50 transition-all duration-300 border border-slate-200 shadow-sm hover:shadow flex items-center justify-center"
-              >
-                View Expreince
-              </Link>
-            </motion.div>
+          <motion.h2
+            className="text-2xl sm:text-3xl md:text-4xl font-medium uppercase tracking-tight mt-4 mb-6 sm:mb-10"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            Frontend Engineer
+          </motion.h2>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="flex gap-4"
-            >
-              {[
-                {
-                  icon: Github,
-                  href: "https://github.com/AjmalAli10",
-                  label: "GitHub",
-                },
-                {
-                  icon: Linkedin,
-                  href: "https://www.linkedin.com/in/ajmal-ali10",
-                  label: "LinkedIn",
-                },
-                {
-                  icon: X,
-                  href: "https://x.com/softEng_ajmal",
-                  label: "Twitter",
-                },
-              ].map(({ icon: Icon, href, label }, index) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`w-12 h-12 flex items-center justify-center rounded-xl bg-white text-slate-600 transition-colors border border-slate-200 group ${
-                    index === 0 || index === 2
-                      ? "hover:text-black hover:bg-primary-50"
-                      : "hover:text-primary-600 hover:bg-primary-50"
-                  }`}
-                >
-                  <Icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                </a>
-              ))}
-            </motion.div>
-          </motion.div>
+          <motion.p
+            className="text-lg sm:text-xl md:text-2xl max-w-3xl mb-8 sm:mb-12 leading-relaxed"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
+            I build exceptional digital experiences that bridge the gap between
+            user-centered design and technical implementation. Currently
+            crafting product experiences at{" "}
+            <span className="text-orange-600 font-medium">MULTIPLY</span>.
+            Available for both freelance opportunities and full-time positions.
+          </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4 }}
-            className="relative"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-10 sm:mt-14"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
           >
-            <div className="relative">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.6 }}
-                className="absolute -top-6 -left-6 w-24 h-24 bg-primary-100 rounded-full blur-2xl"
-              />
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.8 }}
-                className="absolute -bottom-6 -right-6 w-24 h-24 bg-primary-200 rounded-full blur-2xl"
-              />
-              <div className="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl">
-                <Image
-                  src="/assets/profile-hero-image.webp"
-                  alt="Ajmal Ali"
-                  className="w-full h-full object-cover"
-                  fill
-                  priority={true}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-              </div>
-              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-slate-200" />
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
-              className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-white px-8 py-4 rounded-2xl shadow-xl border border-slate-100"
+            <Button
+              asChild
+              variant="cta"
+              size="cta"
+              withArrow
+              className="w-full sm:w-auto"
             >
-              <div className="flex items-center gap-4">
-                <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-                <p className="text-slate-600 font-medium">
-                  Building products in tech!
-                </p>
-              </div>
-            </motion.div>
+              <Link href="/works">View My Work</Link>
+            </Button>
+
+            <Button
+              asChild
+              variant="outline"
+              size="cta"
+              className="w-full sm:w-auto border-2 border-black shadow-[4px_4px_0_rgb(0,0,0)] hover:shadow-[4px_4px_0_rgb(234,88,12)] hover:border-orange-600 active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0_rgb(234,88,12)]"
+            >
+              <Link href="/contact">Contact Me</Link>
+            </Button>
           </motion.div>
-        </div>
+
+          <motion.p
+            className="text-sm sm:text-base text-gray-600 mt-6 sm:mt-8 max-w-2xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.0, duration: 0.8 }}
+          >
+            I&apos;m interested in ambitious and large-scale freelance projects,
+            but I&apos;m equally open to full-time opportunities. If you have
+            any inquiries or would like to discuss potential collaborations,
+            please don&apos;t hesitate to get in touch.
+          </motion.p>
+        </motion.div>
+      </div>
+
+      {/* Abstract design elements */}
+      <div
+        className="absolute -top-20 right-0 w-[300px] sm:w-[500px] md:w-[700px] h-[300px] sm:h-[500px] md:h-[700px] bg-orange-600 rounded-full opacity-5 blur-3xl"
+        style={{
+          transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.05}px)`,
+        }}
+      ></div>
+      <div
+        className="absolute -top-40 -left-20 w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] bg-black rounded-full opacity-5 blur-3xl"
+        style={{
+          transform: `translate(${scrollY * -0.05}px, ${scrollY * -0.08}px)`,
+        }}
+      ></div>
+      <div
+        className="absolute bottom-0 -left-10 w-[250px] sm:w-[350px] md:w-[500px] h-[250px] sm:h-[350px] md:h-[500px] bg-orange-500 rounded-full opacity-5 blur-3xl"
+        style={{
+          transform: `translate(${scrollY * -0.05}px, ${scrollY * -0.02}px)`,
+        }}
+      ></div>
+
+      {/* X design element */}
+      <div className="absolute bottom-20 right-10 sm:bottom-40 sm:right-40 opacity-10 w-20 sm:w-40 h-20 sm:h-40 hidden sm:block">
+        <div className="w-full h-1 bg-orange-600 absolute top-1/2 transform -translate-y-1/2 rotate-45"></div>
+        <div className="w-full h-1 bg-orange-600 absolute top-1/2 transform -translate-y-1/2 -rotate-45"></div>
       </div>
     </section>
   );

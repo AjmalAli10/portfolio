@@ -1,102 +1,212 @@
 /* eslint-disable @next/next/no-img-element */
-'use client';
-import { motion } from "framer-motion"
+"use client";
 import { useEffect, useState } from "react";
-import Sidebar from "./sidebar";
-import { AnimatePresence } from "framer-motion";
-import { Menu } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-
-const navItems = ['About', 'Experience', 'Skills', 'Projects', 'Contact'];
- const  Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false)
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(prev => !prev);
-  };
-
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-        if (isMobileMenuOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
 
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }
-}, [isMobileMenuOpen]);
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  const navLinks = [
+    { href: "/", text: "Home" },
+    { href: "/works", text: "Works" },
+    { href: "/about", text: "About" },
+    { href: "/contact", text: "Contact" },
+  ];
+
+  const isActive = (path: string) => {
+    return pathname === path;
+  };
+
   return (
     <>
-      <nav className="fixed top-0 w-full bg-white/70 backdrop-blur-xl z-50 border-b border-slate-200 h-[80px]">
-      <div className="container mx-auto px-6 py-5">
-      <div className="flex justify-between items-center">
-          <motion.div
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            className="text-2xl font-bold gradient-text"
-          >
-           <Link href="/">
-           <img
-              src="/assets/portfolio-logo.png"
-              alt="portfolio"
-              className="h-[40px] w-[40px] object-contain"
-            />
-           </Link>
-          </motion.div>
-          <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
+      {/* Overlay */}
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/30 z-40 backdrop-blur-sm lg:hidden"
+          onClick={closeMenu}
+        ></div>
+      )}
+
+      <header
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-white shadow-md py-4"
+            : "bg-transparent py-5 md:py-6 lg:py-8"
+        }`}
+      >
+        <div className="container mx-auto px-5 sm:px-6 flex items-center justify-between">
+          <Link href="/" className="inline-block">
+            <span
+              className={`font-bold text-2xl sm:text-3xl uppercase transition-colors duration-300 ${
+                scrolled ? "text-black" : "text-orange-600"
+              }`}
+            >
+              Ajmal
+            </span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center justify-center flex-1 mx-4">
+            <div className="flex items-center space-x-6 xl:space-x-8">
+              {navLinks.map((link) => (
                 <Link
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-slate-600 hover:text-sectionHadingColor-800 transition-all duration-300 relative group"
-              >
-                {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full" />
-              </Link>
+                  key={link.href}
+                  href={link.href}
+                  className={`px-3 py-2 relative font-medium ${
+                    isActive(link.href)
+                      ? "text-orange-600"
+                      : "text-gray-700 hover:text-orange-600"
+                  } transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-orange-600 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-bottom-right hover:after:origin-bottom-left ${
+                    isActive(link.href) && "after:scale-x-100"
+                  }`}
+                >
+                  {link.text}
+                </Link>
               ))}
-            
-             {/* <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-300 shadow-sm group"
-              >
-                <FileText className="w-4 h-4" />
-                Resume
-                <ExternalLink className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </a> */}
+            </div>
+          </nav>
+
+          <div className="hidden lg:block ml-auto">
+            <Link
+              href="/contact"
+              className="relative bg-black text-white hover:bg-orange-600 transition-all duration-300 px-5 py-2 uppercase text-sm font-medium shadow-[2px_2px_0px_rgb(0,0,0)] hover:shadow-[3px_3px_0px_rgb(234,88,12)] active:translate-y-1 active:translate-x-1 active:shadow-[1px_1px_0px_rgb(234,88,12)] overflow-hidden"
+            >
+              <span className="relative z-10">Get In Touch</span>
+            </Link>
           </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={toggleMobileMenu}
-              className="md:hidden p-2 text-slate-600 hover:text-primary-600 transition-colors"
-              aria-label="Toggle mobile menu"
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="lg:hidden p-2 ml-4 rounded-md focus:outline-none"
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          >
+            <svg
+              className={`h-6 w-6 transition-colors duration-300 ${
+                scrolled ? "text-black" : "text-orange-600"
+              }`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
             >
-              <Menu className="w-6 h-6" />
-            </button>
+              {isMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Navigation Drawer */}
+      <div
+        className={`fixed top-0 right-0 w-[80%] sm:w-[60%] max-w-sm h-full bg-white z-50 shadow-xl transform transition-transform duration-300 ${
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        } lg:hidden flex flex-col`}
+      >
+        {/* Close Button */}
+        <div className="flex justify-between items-center p-5 border-b">
+          <span className="font-bold text-2xl uppercase">Menu</span>
+          <button
+            onClick={closeMenu}
+            className="p-2 rounded-md text-black focus:outline-none"
+            aria-label="Close menu"
+          >
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* Nav Links */}
+        <div className="flex-1 overflow-y-auto">
+          <nav className="flex flex-col p-5 space-y-5">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-lg font-medium py-2 border-b border-gray-100 ${
+                  isActive(link.href)
+                    ? "text-orange-600 border-orange-600"
+                    : "text-gray-700 hover:text-orange-600 hover:border-orange-600"
+                } transition-colors duration-300`}
+                onClick={closeMenu}
+              >
+                {link.text}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* Footer */}
+        <div className="p-5 border-t">
+          <Link
+            href="/contact"
+            className="inline-block relative bg-orange-600 text-white hover:bg-orange-700 transition-all duration-300 px-6 py-3 text-base uppercase text-center tracking-wider font-medium w-full shadow-[3px_3px_0_rgb(0,0,0)] hover:shadow-[4px_4px_0_rgb(0,0,0)] active:translate-y-1 active:shadow-[3px_3px_0_rgb(0,0,0)] overflow-hidden group"
+            onClick={closeMenu}
+          >
+            <span className="relative z-10 flex items-center justify-center">
+              Get In Touch
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </span>
+          </Link>
         </div>
       </div>
-    </nav>
-     {/* Mobile Sidebar */}
-     <AnimatePresence>
-        {isMobileMenuOpen && (
-          <Sidebar
-            onClose={closeMobileMenu}
-            navItems={navItems}
-          />
-        )}
-      </AnimatePresence>
     </>
   );
-}
+};
 
 export default Navbar;

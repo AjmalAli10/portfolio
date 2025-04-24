@@ -1,60 +1,45 @@
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 import { Metadata } from "next";
 
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
 export function constructMetadata({
-  title = "Ajmal Ali | Frontend Engineer | Developer | Software Engineer | Portfolio",
-  description = "Explore Ajmal's portfolio showcasing expertise in frontend development, React, Next.js, web design, Flutter, React Native ,UI/UX design, and performance optimization. Discover innovative, responsive web applications that enhance user engagement and drive conversions.",
-  image = "/assets/profile-pic.jpeg",
+  title = "Portfolio | Your Name",
+  description = "Personal portfolio showcasing work, skills, and experience",
+  image = "/og-image.png",
   icons = "/favicon.ico",
+  noIndex = false,
 }: {
   title?: string;
   description?: string;
   image?: string;
   icons?: string;
+  noIndex?: boolean;
 } = {}): Metadata {
-  const fullImageUrl = new URL(image, "https://www.ajmalali.me").toString();
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Ajmal Ali",
-    jobTitle: "Frontend Engineer | Developer | Software Engineer",
-    url: "https://www.ajmalali.me/",
-    image: fullImageUrl,
-    sameAs: [
-      "https://twitter.com/softEng_ajmal",
-      "https://www.linkedin.com/in/ajmal-ali10",
-    ],
-  };
   return {
     title,
     description,
     openGraph: {
       title,
       description,
-      images: [
-        {
-          url: fullImageUrl,
-        },
-      ],
-      url: "https://www.ajmalali.me",
-      type: "website",
-      siteName:
-        "Ajmal Ali | Frontend Engineer | Software Engineer | Developer | Portfolio",
+      images: [{ url: image }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [fullImageUrl],
-      creator: "@softEng_ajmal",
+      images: [image],
     },
-    icons: {
-      icon: icons,
-    },
-    metadataBase: new URL("https://www.ajmalali.me/"),
-    alternates: {
-      types: {
-        "application/ld+json": JSON.stringify(jsonLd),
+    icons,
+    metadataBase: new URL("https://yourwebsite.com"),
+    ...(noIndex && {
+      robots: {
+        index: false,
+        follow: false,
       },
-    },
+    }),
   };
 }

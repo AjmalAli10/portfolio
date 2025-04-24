@@ -1,29 +1,34 @@
-import {Sora} from 'next/font/google';
+import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { constructMetadata } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
+export const metadata = constructMetadata();
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-space-grotesk",
+  display: "swap",
+  fallback: ["Helvetica", "Arial", "sans-serif"],
+});
 
-export const metadata = constructMetadata()
-
-const sora = Sora({
-  subsets: ['latin', 'latin-ext'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-sora',
-  display: 'swap',
-  fallback: ['Helvetica', 'Arial', 'sans-serif'],
-})
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-      className={sora.className}
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          spaceGrotesk.variable
+        )}
       >
-        {children}
+        <div className="relative flex min-h-screen flex-col">
+          <div className="flex-1">{children}</div>
+        </div>
       </body>
     </html>
   );
