@@ -239,15 +239,17 @@ export default function WorksPage() {
               </div>
               <div>
                 <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-tight">
-                  Frontend Engineer
+                  Full-Stack Engineer
                 </div>
                 <div className="text-orange-600 font-medium tracking-wider mt-2 md:mt-3 lg:mt-4 text-base">
                   Sep 2023 - Present
                 </div>
                 <p className="mt-4 sm:mt-6 md:mt-8 text-gray-300 leading-relaxed max-w-3xl text-base sm:text-base md:text-lg">
-                  Taking on advanced projects and leading technical
-                  implementations. Developing sophisticated features that
-                  significantly improved user experience and business metrics.
+                  Evolved into full-stack role, architecting end-to-end
+                  solutions with React, Next.js, Node.js, and PostgreSQL.
+                  Leading technical implementations that delivered measurable
+                  business impact including 70% reduction in operational
+                  overhead and 50% user acquisition growth.
                 </p>
               </div>
             </div>
@@ -267,7 +269,8 @@ export default function WorksPage() {
                 <p className="mt-4 sm:mt-6 md:mt-8 text-gray-300 leading-relaxed max-w-3xl text-base sm:text-base md:text-lg">
                   Started at MULTIPLY as an intern focusing on React
                   development. Quickly demonstrated strong technical skills and
-                  initiative, which led to being offered a full-time position.
+                  initiative, delivering high-impact features that impressed the
+                  team and led to full-time offer within 6 months.
                 </p>
               </div>
             </div>

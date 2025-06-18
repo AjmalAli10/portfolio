@@ -66,7 +66,7 @@ const projects: Project[] = [
     type: "Freelance POC Project",
     period: "2025",
     highlights: [
-      "Built AI chat interface in React for real-time legal consultations, integrating backend APIs to fetch conversation history and display context-aware responses based on document data",
+      "Built AI chat interface in Next.js for real-time legal consultations, integrating backend APIs to fetch conversation history and display context-aware responses based on document data",
       "Integrated PDF.js to create custom legal document viewer for seamless document review and analysis",
       "Architected client-side state using Zustand for local state and TanStack React Query for async data fetching — ensuring consistent UI updates and efficient API interaction",
       "Developed protected frontend routes using Next.js middleware and handled session states via JWT tokens, improving UX for authenticated users",
