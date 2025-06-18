@@ -21,7 +21,7 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    title: "Frontend Engineer",
+    title: "Full-Stack Engineer",
     company: "MULTIPLY (by Pidilite)",
     location: "Bengaluru, India",
     period: "March 2023 - Present",
