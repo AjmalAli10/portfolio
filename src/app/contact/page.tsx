@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer";
@@ -12,6 +12,7 @@ export default function ContactPage() {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -20,12 +21,35 @@ export default function ContactPage() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log(formData);
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success("Message sent successfully!");
+        // Reset form
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        toast.error(data.error || "Failed to send message. Please try again.");
+        console.error("Error:", data);
+      }
+    } catch (error) {
+      toast.error("An error occurred. Please try again later.");
+      console.error("Error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -137,6 +161,7 @@ export default function ContactPage() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border-2 border-black focus:border-orange-600 outline-none transition-colors"
+                    disabled={isSubmitting}
                   />
                 </div>
 
@@ -152,6 +177,7 @@ export default function ContactPage() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border-2 border-black focus:border-orange-600 outline-none transition-colors"
+                    disabled={isSubmitting}
                   />
                 </div>
 
@@ -167,14 +193,16 @@ export default function ContactPage() {
                     required
                     rows={6}
                     className="w-full px-4 py-3 border-2 border-black focus:border-orange-600 outline-none transition-colors"
+                    disabled={isSubmitting}
                   ></textarea>
                 </div>
 
                 <Button
                   type="submit"
                   className="bg-black text-white hover:bg-black/90 px-8 py-6 text-base rounded-none"
+                  disabled={isSubmitting}
                 >
-                  Send Message
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </div>

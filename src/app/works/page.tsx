@@ -1,9 +1,9 @@
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
-import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import ProjectCard from "@/components/ProjectCard";
 
 interface Achievement {
   highlight: string;
@@ -29,7 +29,7 @@ const experiences: Experience[] = [
       {
         highlight: "Career Growth",
         description:
-          "Started as an intern and quickly progressed to a full-time Frontend Engineer role within 6 months due to strong performance and technical contributions.",
+          "Started as an intern and quickly progressed to Frontend Engineer within 6 months due to strong performance and technical contributions, then evolved into Full-Stack Engineer role, mastering both frontend and backend technologies.",
       },
       {
         highlight: "Enhanced pricing control",
@@ -100,11 +100,32 @@ interface Project {
   tags: string[];
   liveUrl: string;
   githubUrl: string;
+  hasLoginCredentials?: boolean;
+  loginNumber?: string;
 }
 
 const projects: Project[] = [
   {
     id: 1,
+    title: "Colex - Legal Tech Platform",
+    description:
+      "A comprehensive legal research platform built for law students and lawyers. Features case folder management, document uploads, AI-powered chat assistant, and context-aware research tools. The platform allows users to create case folders, upload PDFs, write research notes, and get intelligent assistance from an AI that understands the context of their work.",
+    image: "/assets/project-thumbnail/legal-case-law-thumnail.png",
+    tags: [
+      "Next.js",
+      "React",
+      "Zustand",
+      "Tailwind CSS",
+      "Material UI",
+      "Tanstack Query",
+    ],
+    liveUrl: "https://dev.getcolex.com/",
+    githubUrl: "https://github.com/AjmalAli10/legal-tech-ai",
+    hasLoginCredentials: true,
+    loginNumber: "7003900023",
+  },
+  {
+    id: 2,
     title: "CaseShop - Create Your Own Phone Case",
     description:
       "A Next.js e-commerce platform where users can design and order custom phone cases. Features include product customization, user authentication, shopping cart functionality, and secure checkout with Stripe integration.",
@@ -114,7 +135,7 @@ const projects: Project[] = [
     githubUrl: "https://github.com/AjmalAli10/case-shop",
   },
   {
-    id: 2,
+    id: 3,
     title: "QKart - E-commerce",
     description:
       "A full-stack e-commerce application built with the MERN stack that offers product browsing, user authentication, cart management, and order processing. Implemented responsive design and optimized for performance across devices.",
@@ -124,7 +145,7 @@ const projects: Project[] = [
     githubUrl: "https://github.com/AjmalAli10/Qkart",
   },
   {
-    id: 3,
+    id: 4,
     title: "XBoard - News Aggregator",
     description:
       "A dynamic news aggregator that fetches and displays the latest articles from various sources using the Flipboard API. Features include categorized news feeds, article previews, and a responsive layout for optimal viewing on any device.",
@@ -165,7 +186,12 @@ export default function WorksPage() {
                     Promoted from Intern to Full-time Engineer
                   </div>
                 </div>
-                <span className="inline-block bg-black text-white px-4 sm:px-6 py-2 sm:py-3 mt-4 md:mt-0 font-medium uppercase tracking-wider text-sm">
+                <span
+                  style={{
+                    width: "fit-content",
+                  }}
+                  className="inline-block bg-black text-white px-4 sm:px-6 py-2 sm:py-3 mt-4 md:mt-0 font-medium uppercase tracking-wider text-sm"
+                >
                   {experience.period}
                 </span>
               </div>
@@ -205,7 +231,7 @@ export default function WorksPage() {
             MY <span className="text-orange-600">JOURNEY</span>
           </h2>
 
-          <div className="relative border-l-2 border-orange-600 ml-4 md:ml-8 lg:ml-12 pl-6 sm:pl-8 md:pl-10 lg:pl-12 pb-8">
+          <div className="relative border-l-2 border-orange-600 ml-4 md:ml-8 lg:ml-12 pl-6  md:pl-8 lg:pl-8 pb-8">
             {/* Current Role */}
             <div className="mb-16 sm:mb-20 md:mb-24 lg:mb-28 relative">
               <div className="absolute -left-8 sm:-left-10 md:-left-12 lg:-left-14 bg-orange-600 w-6 sm:w-8 md:w-10 lg:w-12 h-6 sm:h-8 md:h-10 lg:h-12 flex items-center justify-center transform -translate-x-1 -translate-y-1">
@@ -256,69 +282,9 @@ export default function WorksPage() {
             MY <span className="text-orange-600">PROJECTS</span>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
             {projects.map((project) => (
-              <div
-                key={project.id}
-                className="group flex flex-col h-full bg-white"
-              >
-                <div className="relative aspect-video mb-6 lg:mb-8 overflow-hidden border-4 border-black group-hover:border-orange-600 transition-colors">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <h3 className="text-lg md:text-xl lg:text-2xl font-bold uppercase tracking-tight mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-base md:text-base leading-relaxed flex-grow mt-2 mb-6">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {project.tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="inline-block text-sm px-3 py-1.5 border border-black uppercase tracking-wider font-medium touch-manipulation hover:bg-black hover:text-white transition-colors"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mt-auto">
-                  <Button
-                    variant="cta"
-                    size="cta"
-                    asChild
-                    className="w-full sm:w-auto py-2.5 px-5"
-                  >
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-base"
-                    >
-                      Live Demo
-                    </a>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="cta"
-                    asChild
-                    className="w-full sm:w-auto py-2.5 px-5 border-2 border-black shadow-[4px_4px_0_rgb(0,0,0)] hover:shadow-[4px_4px_0_rgb(234,88,12)] hover:border-orange-600 active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0_rgb(234,88,12)]"
-                  >
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-base"
-                    >
-                      Source Code
-                    </a>
-                  </Button>
-                </div>
-              </div>
+              <ProjectCard key={project.id} project={project} />
             ))}
           </div>
 

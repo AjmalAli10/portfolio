@@ -27,65 +27,84 @@ export default function AboutPage() {
             </div>
 
             <div className="flex flex-col justify-center">
-              <p className="text-xl mb-6">
-                As a dedicated Frontend Engineer, I&apos;ve a passion for
-                crafting visually appealing and high-performance web
-                applications. With hands-on experience in technologies like
-                React, Next.js, and Tailwind CSS, I specialize in building
-                responsive, user-focused solutions that make a lasting impact.
+              <p className="text-xl mb-8 leading-relaxed">
+                I&apos;m a full-stack engineer who transforms complex business
+                challenges into elegant, scalable solutions. My approach
+                combines technical excellence with strategic thinking,
+                consistently delivering systems that drive measurable business
+                impact — from reducing operational overhead by 70% to increasing
+                user engagement by 25%.
               </p>
 
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold mb-2">
-                  Technical Excellence
+              <div className="mb-8">
+                <h3 className="text-2xl font-bold mb-4 text-orange-600">
+                  Problem-Solving Philosophy
                 </h3>
-                <p>
-                  Committed to writing clean, maintainable code and staying
-                  current with the latest web technologies.
+                <p className="text-lg mb-4">
+                  I believe the best engineering solutions emerge from deep
+                  understanding of user needs and business goals. Whether
+                  it&apos;s architecting real-time systems or optimizing
+                  performance bottlenecks, I focus on creating lasting value
+                  through thoughtful design and execution.
                 </p>
               </div>
 
               <div className="mb-8">
-                <h3 className="text-lg font-semibold mb-2">
-                  Innovation Driven
+                <h3 className="text-2xl font-bold mb-4 text-orange-600">
+                  Impact-Driven Engineering
                 </h3>
-                <p>
-                  Always exploring new ways to push the boundaries of web
-                  development and create exceptional user experiences.
+                <p className="text-lg mb-4">
+                  Every line of code I write serves a purpose. I&apos;ve built
+                  systems that handle millions of operations, standardized
+                  architectures that improved team velocity by 30%, and created
+                  user experiences that convert visitors into loyal customers.
                 </p>
               </div>
 
-              <div className="flex flex-col space-y-4">
-                <div className="flex items-center gap-2">
-                  <span className="text-orange-600 text-xl">⋆</span>
-                  <span className="font-medium">
-                    1.6+ years of experience in frontend development
-                  </span>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-gray-50 p-6 border-l-4 border-orange-600">
+                  <h4 className="font-bold text-lg mb-2">
+                    System Architecture
+                  </h4>
+                  <p className="text-sm text-gray-600">
+                    Designing scalable, maintainable solutions that grow with
+                    business needs
+                  </p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-orange-600 text-xl">⋆</span>
-                  <span className="font-medium">
-                    Proficient in React.js, Next.js, and Tailwind CSS
-                  </span>
+                <div className="bg-gray-50 p-6 border-l-4 border-orange-600">
+                  <h4 className="font-bold text-lg mb-2">
+                    Performance Optimization
+                  </h4>
+                  <p className="text-sm text-gray-600">
+                    Turning slow, inefficient systems into lightning-fast user
+                    experiences
+                  </p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-orange-600 text-xl">⋆</span>
-                  <span className="font-medium">
-                    Developed and optimized e-commerce and SaaS applications
-                  </span>
+                <div className="bg-gray-50 p-6 border-l-4 border-orange-600">
+                  <h4 className="font-bold text-lg mb-2">
+                    Innovation Integration
+                  </h4>
+                  <p className="text-sm text-gray-600">
+                    Leveraging cutting-edge technologies to solve real-world
+                    challenges
+                  </p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-orange-600 text-xl">⋆</span>
-                  <span className="font-medium">
-                    Integrated payment solutions with Stripe API
-                  </span>
+                <div className="bg-gray-50 p-6 border-l-4 border-orange-600">
+                  <h4 className="font-bold text-lg mb-2">Team Enablement</h4>
+                  <p className="text-sm text-gray-600">
+                    Building tools and processes that amplify entire engineering
+                    teams
+                  </p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-orange-600 text-xl">⋆</span>
-                  <span className="font-medium">
-                    Hands-on experience with Strapi CMS and Prisma ORM
-                  </span>
-                </div>
+              </div>
+
+              <div className="mt-8 p-6 bg-orange-50 border border-orange-200 rounded-lg">
+                <p className="text-lg font-medium text-orange-800">
+                  &ldquo;Great engineering isn&apos;t just about writing code —
+                  it&apos;s about understanding problems deeply, designing
+                  solutions thoughtfully, and delivering results that
+                  matter.&rdquo;
+                </p>
               </div>
             </div>
           </div>

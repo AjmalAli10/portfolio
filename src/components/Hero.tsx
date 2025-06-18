@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   const [scrollY, setScrollY] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,7 +49,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            Frontend Engineer
+            Full-Stack Engineer
           </motion.h2>
 
           <motion.p
@@ -57,11 +58,14 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            I build exceptional digital experiences that bridge the gap between
-            user-centered design and technical implementation. Currently
-            crafting product experiences at{" "}
-            <span className="text-orange-600 font-medium">MULTIPLY</span>.
-            Available for both freelance opportunities and full-time positions.
+            I build exceptional end-to-end digital experiences, from sleek user
+            interfaces to robust backend systems. Currently crafting full-stack
+            product experiences at{" "}
+            <span className="text-orange-600 font-medium">
+              a leading tech company
+            </span>
+            . Available for both freelance opportunities and full-time
+            positions.
           </motion.p>
 
           <motion.div
@@ -71,22 +75,22 @@ export default function Hero() {
             transition={{ delay: 0.8, duration: 0.8 }}
           >
             <Button
-              asChild
               variant="cta"
               size="cta"
               withArrow
               className="w-full sm:w-auto"
+              onClick={() => router.push("/works")}
             >
-              <Link href="/works">View My Work</Link>
+              View My Work
             </Button>
 
             <Button
-              asChild
               variant="outline"
               size="cta"
               className="w-full sm:w-auto border-2 border-black shadow-[4px_4px_0_rgb(0,0,0)] hover:shadow-[4px_4px_0_rgb(234,88,12)] hover:border-orange-600 active:translate-x-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0_rgb(234,88,12)]"
+              onClick={() => router.push("/contact")}
             >
-              <Link href="/contact">Contact Me</Link>
+              Contact Me
             </Button>
           </motion.div>
 

@@ -52,11 +52,11 @@ const Navbar = () => {
       <header
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-white shadow-md py-4"
+            ? "bg-white shadow-md pt-4"
             : "bg-transparent py-5 md:py-6 lg:py-8"
         }`}
       >
-        <div className="container mx-auto px-5 sm:px-6 flex items-center justify-between">
+        <div className="container mx-auto px-5 md:px-6 flex items-center justify-between">
           <Link href="/" className="inline-block">
             <span
               className={`font-bold text-2xl sm:text-3xl uppercase transition-colors duration-300 ${
