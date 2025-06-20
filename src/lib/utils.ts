@@ -9,7 +9,7 @@ export function cn(...inputs: ClassValue[]) {
 export function constructMetadata({
   title = "Portfolio | Ajmal Ali",
   description = "Ajmal Ali – Full-Stack Engineer. Explore projects in AI tools, scalable frontend architecture using React, Next.js, and Node.js.",
-  image = "/assets/profile-hero-image.webp",
+  image = "/assets/og-image.webp",
   icons = "/favicon.ico",
   keywords = [
     "Ajmal Ali",
