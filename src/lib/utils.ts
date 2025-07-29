@@ -75,8 +75,6 @@ export function constructMetadata({
       description,
       images: [image],
     },
-    themeColor: "#ffffff",
-    colorScheme: "light",
     ...(noIndex && {
       robots: {
         index: false,

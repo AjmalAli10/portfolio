@@ -5,6 +5,11 @@ import { cn } from "@/lib/utils";
 
 export const metadata = constructMetadata();
 
+export const viewport = {
+  themeColor: "#ffffff",
+  colorScheme: "light",
+};
+
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],

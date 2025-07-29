@@ -33,6 +33,7 @@ const Navbar = () => {
     { href: "/works", text: "Works" },
     { href: "/about", text: "About" },
     { href: "/contact", text: "Contact" },
+    { href: "/recommendations", text: "Recommendations" },
   ];
 
   const isActive = (path: string) => {
